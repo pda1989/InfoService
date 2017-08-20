@@ -1,6 +1,6 @@
 ﻿namespace InfoService
 {
-    partial class Service1
+    partial class InfoService
     {
         /// <summary> 
         /// Required designer variable.
