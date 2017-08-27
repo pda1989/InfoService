@@ -18,6 +18,9 @@ namespace InfoService
             {
                 var jsonConverter = new JsonSerialyzer();
 
+                // update
+                var updater = new WebUpdater(log);
+
                 // settings
                 string dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 string settingsFileName = Path.Combine(dirName, "ServiceSettings.json");
@@ -26,8 +29,8 @@ namespace InfoService
 
                 // commands
                 var commands = new Stack<ServiceCommandDecorator>();
-                commands.Push(new TestCommand(log, null));
-                commands.Push(new GetAPIVersionCommand(log, commands.Peek()));
+                commands.Push(new GetAPIVersionCommand(log, null));
+                commands.Push(new UpdateCommand(log, commands.Peek(), updater));
 
                 // handlers
                 var messageHandler = new MessageHandler(jsonConverter, commands.Peek());

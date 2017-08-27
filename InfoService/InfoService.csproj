@@ -61,8 +61,9 @@
     </Compile>
     <Compile Include="InputMessage.cs" />
     <Compile Include="ISerializer.cs" />
-    <Compile Include="IServiceCommand.cs" />
+    <Compile Include="ServiceCommand.cs" />
     <Compile Include="ISettingsProvider.cs" />
+    <Compile Include="IUpdater.cs" />
     <Compile Include="JsonSerialyzer.cs" />
     <Compile Include="MessageHandler.cs" />
     <Compile Include="OutputMessage.cs" />
@@ -79,11 +80,13 @@
     <Compile Include="ServiceHelper.cs" />
     <Compile Include="ServiceSettings.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="TestCommand.cs" />
+    <Compile Include="UpdateCommand.cs" />
     <Compile Include="WebServer.cs" />
+    <Compile Include="WebUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagramCore.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

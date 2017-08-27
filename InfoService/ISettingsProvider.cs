@@ -2,7 +2,7 @@
 {
     public interface ISettingsProvider
     {
-        Settings LoadSettings();
+        void LoadSettings(Settings settings);
         void SaveSettings(Settings settings);
     }
 }

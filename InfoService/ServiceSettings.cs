@@ -24,13 +24,7 @@
 
         public void LoadSettings()
         {
-            var settings = _provider?.LoadSettings();
-            if (settings != null)
-            {
-                TimerInterval = settings.TimerInterval;
-                ServerName = settings.ServerName;
-                ServerPort = settings.ServerPort; 
-            }
+            _provider?.LoadSettings(this);
         }
 
         public void SaveSettings()

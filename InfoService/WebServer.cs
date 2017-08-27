@@ -1,4 +1,7 @@
-﻿namespace InfoService
+﻿using System.Net;
+using System.Net.Http;
+
+namespace InfoService
 {
     public class WebServer : IInfoServer
     {
@@ -19,11 +22,22 @@
 
         public string RequestMessage()
         {
-            return "{\"Command\":\"GetAPIVersion\"}";
+            string uri = ServiceSettings.GetInstance().ServerName;
+            var client = new HttpClient();
+            var responseData = client.GetStringAsync(uri);
+            return responseData.Result.Trim();
         }
 
         public void SendResult(string result)
         {
+            string uri = ServiceSettings.GetInstance().ServerName;
+            var client = new HttpClient();
+            var content = new StringContent(result);
+            var response = client.PostAsync(uri, content);
+            var responseData = response.Result.Content.ReadAsStringAsync();
+            string resultFromServer = responseData.Result.Trim();
+            if (resultFromServer != "OK")
+                throw new WebException($"Invalid server result: \n {resultFromServer}");
         }
     }
 }

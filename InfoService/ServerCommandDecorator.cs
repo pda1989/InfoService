@@ -1,18 +1,18 @@
 ﻿namespace InfoService
 {
-    public abstract class ServiceCommandDecorator : IServiceCommand
+    public abstract class ServiceCommandDecorator : ServiceCommand
     {
-        protected IServiceCommand _command;
+        protected ServiceCommand _command;
         protected ILog _log;
 
 
-        public ServiceCommandDecorator(ILog log, IServiceCommand command)
+        public ServiceCommandDecorator(ILog log, ServiceCommand command)
         {
             _log = log;
             _command = command;
         }
 
-        public virtual OutputMessage Execute(InputMessage message)
+        public override OutputMessage Execute(InputMessage message)
         {
             return _command?.Execute(message);
         }

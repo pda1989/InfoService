@@ -14,11 +14,17 @@ namespace InfoService
             _serializer = serializer;
         }
 
-        public Settings LoadSettings()
+        public void LoadSettings(Settings settings)
         {
             string text = File.ReadAllText(_fileName);
-            var settings = _serializer?.Deserialize<Settings>(text);
-            return settings;
+            var currentSettings = _serializer?.Deserialize<Settings>(text);
+            if (currentSettings != null)
+            {
+                settings.TimerInterval = currentSettings.TimerInterval;
+                settings.ServerName = currentSettings.ServerName;
+                settings.ServerPort = currentSettings.ServerPort;
+            }
+
         }
 
         public void SaveSettings(Settings settings)

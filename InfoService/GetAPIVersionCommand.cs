@@ -2,7 +2,7 @@
 {
     public class GetAPIVersionCommand : ServiceCommandDecorator
     {
-        public GetAPIVersionCommand(ILog log, IServiceCommand command) : base(log, command)
+        public GetAPIVersionCommand(ILog log, ServiceCommand command) : base(log, command)
         {
         }
 

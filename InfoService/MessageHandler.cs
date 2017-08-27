@@ -3,10 +3,10 @@
     public class MessageHandler : IMessageHandler
     {
         protected ISerializer _converter;
-        protected IServiceCommand _command;
+        protected ServiceCommand _command;
 
 
-        public MessageHandler(ISerializer converter, IServiceCommand command)
+        public MessageHandler(ISerializer converter, ServiceCommand command)
         {
             _converter = converter;
             _command = command;
