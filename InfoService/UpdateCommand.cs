@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 
 namespace InfoService
@@ -29,9 +28,9 @@ namespace InfoService
                     var version = Version.Parse(message.Parameters[0]);
                     string updateUri = message.Parameters[1];
                     string md5 = message.Parameters[2];
-                    string tempFileName = Path.GetTempFileName();
 
-                    _updater?.Update(Assembly.GetExecutingAssembly(), updateUri, md5, tempFileName);
+                    if (Assembly.GetExecutingAssembly().GetName().Version < version)
+                        _updater?.Update(Assembly.GetExecutingAssembly(), updateUri, md5);
                 }
                 catch (Exception exception)
                 {

@@ -55,7 +55,7 @@
   <Class Name="InfoService.WebUpdater">
     <Position X="6" Y="7.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>WebUpdater.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
