@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 
 namespace InfoService
@@ -32,7 +33,11 @@ namespace InfoService
         {
             string uri = ServiceSettings.GetInstance().ServerName;
             var client = new HttpClient();
-            var content = new StringContent(result);
+            var values = new Dictionary<string, string>
+            {
+                { "result", result }
+            };
+            var content = new FormUrlEncodedContent(values);
             var response = client.PostAsync(uri, content);
             var responseData = response.Result.Content.ReadAsStringAsync();
             string resultFromServer = responseData.Result.Trim();

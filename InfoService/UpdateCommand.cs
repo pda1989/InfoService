@@ -29,8 +29,15 @@ namespace InfoService
                     string updateUri = message.Parameters[1];
                     string md5 = message.Parameters[2];
 
-                    if (Assembly.GetExecutingAssembly().GetName().Version < version)
+                    var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+                    if (currentVersion < version)
                         _updater?.Update(Assembly.GetExecutingAssembly(), updateUri, md5);
+                    else
+                    {
+                        string resultMessage = $"The current version ({currentVersion}) is newer than {version}";
+                        _log?.Write(resultMessage);
+                        return new OutputMessage { Message = resultMessage };
+                    }
                 }
                 catch (Exception exception)
                 {
