@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="InfoService.GetAPIVersionCommand">
-    <Position X="11.25" Y="6.5" Width="2.25" />
+    <Position X="13" Y="5.25" Width="2.25" />
+    <InheritanceLine Type="InfoService.ServiceCommand" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.875" Y="4.69" />
+        <Point X="10.875" Y="5.938" />
+        <Point X="13" Y="5.938" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GetAPIVersionCommand.cs</FileName>
@@ -16,7 +23,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="InfoService.UpdateCommand">
-    <Position X="8.25" Y="6.5" Width="2.25" />
+    <Position X="13" Y="3" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>UpdateCommand.cs</FileName>
@@ -46,18 +53,10 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="InfoService.WebUpdater">
-    <Position X="6" Y="6.5" Width="2" />
+    <Position X="15.5" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>WebUpdater.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="InfoService.JsonSerialyzer">
-    <Position X="6" Y="1" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>JsonSerialyzer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -81,6 +80,28 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>OutputMessage.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.GetInfoCommand">
+    <Position X="13" Y="7" Width="2.25" />
+    <InheritanceLine Type="InfoService.ServiceCommand" FixedToPoint="true">
+      <Path>
+        <Point X="10.875" Y="4.69" />
+        <Point X="10.875" Y="8.125" />
+        <Point X="13" Y="8.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GetInfoCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.PCInfo">
+    <Position X="15.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>PCInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

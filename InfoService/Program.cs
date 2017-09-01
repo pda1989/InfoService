@@ -36,7 +36,7 @@ namespace InfoService
                     // commands
                     messageHandler.AddCommand(new GetAPIVersionCommand(log));
                     messageHandler.AddCommand(new UpdateCommand(log, updater));
-
+                    messageHandler.AddCommand(new GetInfoCommand(log, null, jsonConverter));
 
                     ServiceBase[] ServicesToRun;
                     ServicesToRun = new ServiceBase[]

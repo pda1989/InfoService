@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="FileSettingsProvider.cs" />
     <Compile Include="GetAPIVersionCommand.cs" />
+    <Compile Include="GetInfoCommand.cs" />
     <Compile Include="IInfoServer.cs" />
+    <Compile Include="IInstanceInfo.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="IMessageHandler.cs" />
     <Compile Include="InfoService.cs">
@@ -61,6 +63,7 @@
     </Compile>
     <Compile Include="InputMessage.cs" />
     <Compile Include="ISerializer.cs" />
+    <Compile Include="PCInfo.cs" />
     <Compile Include="ServiceCommand.cs" />
     <Compile Include="ISettingsProvider.cs" />
     <Compile Include="IUpdater.cs" />
