@@ -3,21 +3,17 @@ using System.Reflection;
 
 namespace InfoService
 {
-    public class UpdateCommand : ServiceCommandDecorator
+    public class UpdateCommand : ServiceCommand
     {
-        private IUpdater _updater;
+        protected IUpdater _updater;
         
-        public UpdateCommand(ILog log, ServiceCommand command, IUpdater updater) : base(log, command)
+        public UpdateCommand(ILog log, IUpdater updater) : base(log)
         {
             _updater = updater;
         }
 
         public override OutputMessage Execute(InputMessage message)
         {
-            var outputMessage = base.Execute(message);
-            if (outputMessage != null)
-                return outputMessage;
-
             if (message.Command == "UpdateService")
             {
                 try

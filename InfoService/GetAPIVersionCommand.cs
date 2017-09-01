@@ -1,19 +1,16 @@
 ﻿namespace InfoService
 {
-    public class GetAPIVersionCommand : ServiceCommandDecorator
+    public class GetAPIVersionCommand : ServiceCommand
     {
-        public GetAPIVersionCommand(ILog log, ServiceCommand command) : base(log, command)
+        public GetAPIVersionCommand(ILog log) : base(log)
         {
         }
 
         public override OutputMessage Execute(InputMessage message)
         {
-            var outputMessage = base.Execute(message);
-            if (outputMessage != null)
-                return outputMessage;
-
             if (message.Command == "GetAPIVersion")
             {
+                _log.Write("Hello");
                 var version = ServiceHelper.GetAPIVersion();
                 return new OutputMessage { Message = version.ToString() };
             }

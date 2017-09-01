@@ -29,20 +29,19 @@ namespace InfoService
                     var settingsProvider = new FileSettingsProvider(settingsFileName, jsonConverter);
                     ServiceSettings.GetInstance().SetSettingsProvider(settingsProvider);
 
-                    // commands
-                    var commands = new Stack<ServiceCommandDecorator>();
-                    commands.Push(new GetAPIVersionCommand(log, null));
-                    commands.Push(new UpdateCommand(log, commands.Peek(), updater));
-
                     // handlers
-                    var messageHandler = new MessageHandler(jsonConverter, commands.Peek());
+                    var messageHandler = new MessageHandler(jsonConverter);
                     var server = new WebServer(messageHandler);
+
+                    // commands
+                    messageHandler.AddCommand(new GetAPIVersionCommand(log));
+                    messageHandler.AddCommand(new UpdateCommand(log, updater));
 
 
                     ServiceBase[] ServicesToRun;
                     ServicesToRun = new ServiceBase[]
                     {
-                    new InfoService(log, server)
+                        new InfoService(log, server)
                     };
                     ServiceBase.Run(ServicesToRun);
                 }

@@ -1,6 +1,6 @@
 ﻿namespace InfoService
 {
-    public class ServiceSettings : Settings
+    public sealed class ServiceSettings : Settings
     {
         private static ServiceSettings _instance;
         public static ServiceSettings GetInstance()

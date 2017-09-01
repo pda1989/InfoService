@@ -22,7 +22,7 @@ namespace InfoService
             ServiceHelper.StopService(assembly.GetName().Name);
         }
 
-        private void UpdateService(Assembly assembly, string tempFileName)
+        protected void UpdateService(Assembly assembly, string tempFileName)
         {
             string location = assembly.Location;
             var process = Process.Start(new ProcessStartInfo
@@ -38,7 +38,7 @@ namespace InfoService
             });
         }
 
-        private string DownloadFile(string uri, string tempFileName)
+        protected string DownloadFile(string uri, string tempFileName)
         {
             using (var client = new WebClient())
             {
