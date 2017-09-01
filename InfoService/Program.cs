@@ -48,7 +48,7 @@ namespace InfoService
                 }
                 catch (Exception exception)
                 {
-                    log.Write(exception.Message, LogType.Error);
+                    log.Write($"Application error: \n{exception.ToString()}", LogType.Error);
                     throw;
                 }
             }
@@ -56,6 +56,8 @@ namespace InfoService
                 ServiceHelper.InstallService(Assembly.GetExecutingAssembly().GetName().Name);
             else if (args[0] == "/U")
                 ServiceHelper.UninstallService(Assembly.GetExecutingAssembly().GetName().Name);
+            else if (args[0] == "/S")
+                ServiceHelper.StartService(Assembly.GetExecutingAssembly().GetName().Name);
             else
                 Console.WriteLine($"Unknown parameter {args[0]}");
         }

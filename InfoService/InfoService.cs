@@ -31,7 +31,7 @@ namespace InfoService
             }
             catch (Exception exception)
             {
-                _log?.Write(exception.Message);
+                _log?.Write($"Service error: \n{exception.ToString()}");
             }
         }
 
@@ -56,7 +56,7 @@ namespace InfoService
             }
             catch (Exception exception)
             {
-                _log?.Write(exception.Message);
+                _log?.Write($"Service error: \n{exception.ToString()}");
             }
         }
     }

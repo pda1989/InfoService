@@ -41,7 +41,7 @@ namespace InfoService
                 }
                 catch (Exception exception)
                 {
-                    _log?.Write(exception.Message, LogType.Error);
+                    _log?.Write($"Update command error: \n{exception.ToString()}", LogType.Error);
                     return GetErrorMessage(exception.Message);
                 }
             }

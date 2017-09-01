@@ -13,7 +13,7 @@ namespace InfoService
             }
             catch (Exception exception)
             {
-                throw new ArgumentException($"Cannot serialize message\n{exception.Message}");
+                throw new ArgumentException($"Cannot serialize message: \n{exception.ToString()}");
             }
         }
 
@@ -25,7 +25,7 @@ namespace InfoService
             }
             catch (Exception exception)
             {
-                throw new ArgumentException($"Cannot deserialize message\n{exception.Message}");
+                throw new ArgumentException($"Cannot deserialize message: \n{exception.ToString()}");
             }
         }
     }
