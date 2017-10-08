@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net;
 
-namespace InfoService
+namespace InfoService.Interfaces
 {
     public interface IInstanceInfo
     {
-        IPAddress IPAddress { get; }
-        string DomainName { get; }
         List<Process> ActiveProcesses { get; }
+        string DomainName { get; }
+        string IPAddress { get; }
     }
 }

@@ -1,8 +1,9 @@
-﻿namespace InfoService
+﻿namespace InfoService.Interfaces
 {
     public interface ISerializer
     {
-        string Serialize<T>(T message);
         T Deserialize<T>(string message);
+
+        string Serialize<T>(T message);
     }
 }

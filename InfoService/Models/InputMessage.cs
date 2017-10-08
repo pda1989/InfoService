@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace InfoService
+namespace InfoService.Models
 {
     public class InputMessage
     {

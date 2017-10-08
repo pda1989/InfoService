@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="InfoService.InfoService">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQCAAAEAA0ACAAAACAAAAAAAAAEAAAgAAAAA=</HashCode>
+      <FileName>InfoService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Implementations.ServiceEventLog">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAA=</HashCode>
+      <FileName>Implementations\ServiceEventLog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InfoService.Implementations.WebServer" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABUAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\WebServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InfoService.Implementations.MessageHandler" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAARAAAQA=</HashCode>
+      <FileName>Implementations\MessageHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InfoService.Models.InputMessage">
+    <Position X="9.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\InputMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Models.OutputMessage">
+    <Position X="11.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\OutputMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Implementations.ServiceCommand">
+    <Position X="9.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Implementations\ServiceCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Implementations.UpdateCommand">
+    <Position X="13" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Implementations\UpdateCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Implementations.WebUpdater">
+    <Position X="15.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Implementations\WebUpdater.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InfoService.Implementations.GetAPIVersionCommand">
+    <Position X="13" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\GetAPIVersionCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Implementations.GetInfoCommand">
+    <Position X="13" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Implementations\GetInfoCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoService.Models.PCInfo">
+    <Position X="15.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Models\PCInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

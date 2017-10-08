@@ -2,30 +2,21 @@
 using System.Collections;
 using System.Configuration.Install;
 using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.ServiceProcess;
 using System.Text;
 
-namespace InfoService
+namespace InfoService.Helpers
 {
     public static class ServiceHelper
     {
-        public static Version GetAPIVersion()
+        private static AssemblyInstaller GetInstaller(Type serviceType) => new AssemblyInstaller
         {
-            return Assembly.GetExecutingAssembly().GetName().Version;
-        }
-
-        public static string GetHash(string fileName)
-        {
-            var bytes = MD5.Create().ComputeHash(new FileStream(fileName, FileMode.Open));
-            var builder = new StringBuilder();
-            foreach (var b in bytes)
-                builder.AppendFormat("{0:X2}", b);
-            return builder.ToString();
-        }
+            Assembly = serviceType.Assembly,
+            CommandLine = null,
+            UseNewContext = true
+        };
 
         private static bool IsServiceInstalled(string serviceName)
         {
@@ -51,14 +42,15 @@ namespace InfoService
             }
         }
 
-        private static AssemblyInstaller GetInstaller(Type serviceType)
+        public static Version GetAPIVersion() => Assembly.GetExecutingAssembly().GetName().Version;
+
+        public static string GetHash(string fileName)
         {
-            return new AssemblyInstaller
-            {
-                Assembly = serviceType.Assembly,
-                CommandLine = null,
-                UseNewContext = true
-            };
+            var bytes = MD5.Create().ComputeHash(new FileStream(fileName, FileMode.Open));
+            var builder = new StringBuilder();
+            foreach (var b in bytes)
+                builder.AppendFormat("{0:X2}", b);
+            return builder.ToString();
         }
 
         public static void InstallService(string serviceName)
@@ -77,17 +69,6 @@ namespace InfoService
                 {
                     installer.Rollback(state);
                 }
-            }
-        }
-
-        public static void UninstallService(string serviceName)
-        {
-            if (!IsServiceInstalled(serviceName))
-                return;
-            using (var installer = GetInstaller(typeof(InfoService)))
-            {
-                IDictionary state = new Hashtable();
-                installer.Uninstall(state);
             }
         }
 
@@ -116,6 +97,17 @@ namespace InfoService
                     controller.Stop();
                     controller.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
                 }
+            }
+        }
+
+        public static void UninstallService(string serviceName)
+        {
+            if (!IsServiceInstalled(serviceName))
+                return;
+            using (var installer = GetInstaller(typeof(InfoService)))
+            {
+                IDictionary state = new Hashtable();
+                installer.Uninstall(state);
             }
         }
     }

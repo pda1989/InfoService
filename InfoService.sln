@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoService", "InfoService\InfoService.csproj", "{C366F1FD-BE07-4852-821B-1F44B05DD9BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoServiceTests", "InfoServiceTests\InfoServiceTests.csproj", "{E0F5BBC4-C8D4-4288-8991-BC9CAC303AE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{C366F1FD-BE07-4852-821B-1F44B05DD9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C366F1FD-BE07-4852-821B-1F44B05DD9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C366F1FD-BE07-4852-821B-1F44B05DD9BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0F5BBC4-C8D4-4288-8991-BC9CAC303AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F5BBC4-C8D4-4288-8991-BC9CAC303AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F5BBC4-C8D4-4288-8991-BC9CAC303AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F5BBC4-C8D4-4288-8991-BC9CAC303AE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E786433-F82C-40B9-B2F6-A37E83890257}
 	EndGlobalSection
 EndGlobal

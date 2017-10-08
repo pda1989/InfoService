@@ -1,12 +1,12 @@
-﻿using System;
+﻿using InfoService.Interfaces;
+using System;
 using System.Diagnostics;
 
-namespace InfoService
+namespace InfoService.Implementations
 {
     public class ServiceEventLog : ILog, IDisposable
     {
         protected EventLog _eventLog = new EventLog();
-
 
         public ServiceEventLog(string source)
         {
@@ -31,9 +31,11 @@ namespace InfoService
                 case LogType.Information:
                     eventType = EventLogEntryType.Information;
                     break;
+
                 case LogType.Error:
                     eventType = EventLogEntryType.Error;
                     break;
+
                 default:
                     eventType = EventLogEntryType.Information;
                     break;

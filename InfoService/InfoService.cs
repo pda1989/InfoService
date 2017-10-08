@@ -1,5 +1,7 @@
-﻿using System;
-using System.Reflection;
+﻿using InfoService.Helpers;
+using InfoService.Implementations;
+using InfoService.Interfaces;
+using System;
 using System.ServiceProcess;
 using System.Timers;
 
@@ -9,25 +11,26 @@ namespace InfoService
     {
         protected ILog _log;
         protected IInfoServer _server;
+        protected ServiceSettings _settings;
 
-        public InfoService(ILog log, IInfoServer server)
+        public InfoService(ILog log, IInfoServer server, ServiceSettings settings)
         {
             InitializeComponent();
 
             _log = log;
             _server = server;
+            _settings = settings;
         }
 
         protected override void OnStart(string[] args)
         {
             try
             {
-                var settings = ServiceSettings.GetInstance();
-                settings.LoadSettings();
+                _settings?.LoadSettings();
 
-                _log?.Write($"Info service started (API ver. {ServiceHelper.GetAPIVersion()})\nTimer interval: {settings.TimerInterval}");
-                
-                StartTimer(settings.TimerInterval);
+                _log?.Write($"Info service started (API ver. {ServiceHelper.GetAPIVersion()})\nTimer interval: {_settings?.TimerInterval}");
+
+                StartTimer(_settings?.TimerInterval ?? 60000);
             }
             catch (Exception exception)
             {
@@ -37,15 +40,7 @@ namespace InfoService
 
         protected override void OnStop()
         {
-            _log?.Write("Info service stoped");
-        }
-
-        protected void StartTimer(int interval)
-        {
-            var timer = new Timer();
-            timer.Interval = interval;
-            timer.Elapsed += (sender, e) => PerformCommand();
-            timer.Start();
+            _log?.Write("Info service stopped");
         }
 
         protected void PerformCommand()
@@ -58,6 +53,14 @@ namespace InfoService
             {
                 _log?.Write($"Service error: \n{exception.ToString()}");
             }
+        }
+
+        protected void StartTimer(int interval)
+        {
+            var timer = new Timer();
+            timer.Interval = interval;
+            timer.Elapsed += (sender, e) => PerformCommand();
+            timer.Start();
         }
     }
 }

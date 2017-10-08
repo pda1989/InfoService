@@ -1,12 +1,14 @@
-﻿using System;
+﻿using InfoService.Interfaces;
+using InfoService.Models;
+using System;
 using System.Reflection;
 
-namespace InfoService
+namespace InfoService.Implementations
 {
     public class UpdateCommand : ServiceCommand
     {
         protected IUpdater _updater;
-        
+
         public UpdateCommand(ILog log, IUpdater updater) : base(log)
         {
             _updater = updater;
@@ -44,6 +46,5 @@ namespace InfoService
 
             return null;
         }
-
     }
 }

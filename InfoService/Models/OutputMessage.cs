@@ -1,8 +1,8 @@
-﻿namespace InfoService
+﻿namespace InfoService.Models
 {
     public class OutputMessage
     {
-        public bool Result { get; set; } = true;
         public string Message { get; set; } = string.Empty;
+        public bool Result { get; set; } = true;
     }
 }

@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InfoService.Interfaces;
+using InfoService.Models;
+using System;
 
-namespace InfoService
+namespace InfoService.Implementations
 {
     public class GetInfoCommand : ServiceCommand
     {
         protected IInstanceInfo _info;
         protected ISerializer _serializer;
 
-
         public GetInfoCommand(ILog log, IInstanceInfo info, ISerializer serializer) : base(log)
         {
             _info = info;
+            _serializer = serializer;
         }
 
         public override OutputMessage Execute(InputMessage message)

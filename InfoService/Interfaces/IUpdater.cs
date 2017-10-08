@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace InfoService
+namespace InfoService.Interfaces
 {
     public interface IUpdater
     {

@@ -1,19 +1,20 @@
-﻿using System;
+﻿using InfoService.Interfaces;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 
-namespace InfoService
+namespace InfoService.Models
 {
     public class PCInfo : IInstanceInfo
     {
-        public IPAddress IPAddress
+        public List<Process> ActiveProcesses
         {
             get
             {
-                return new IPAddress(0);
+                return new List<Process>();
             }
         }
+
         public string DomainName
         {
             get
@@ -21,11 +22,12 @@ namespace InfoService
                 return string.Empty;
             }
         }
-        public List<Process> ActiveProcesses
+
+        public string IPAddress
         {
             get
             {
-                return new List<Process>();
+                return new IPAddress(0).ToString();
             }
         }
     }

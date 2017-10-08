@@ -1,16 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using InfoService.Interfaces;
+using InfoService.Models;
+using System.Collections.Generic;
 
-namespace InfoService
+namespace InfoService.Implementations
 {
     public class MessageHandler : IMessageHandler
     {
-        protected ISerializer _converter;
         protected List<ServiceCommand> _commands = new List<ServiceCommand>();
-
+        protected ISerializer _converter;
 
         public MessageHandler(ISerializer converter)
         {
             _converter = converter;
+        }
+
+        public void AddCommand(ServiceCommand command)
+        {
+            _commands.Add(command);
+        }
+
+        public string GetErrorMessage(string error)
+        {
+            var outputMessage = new OutputMessage
+            {
+                Result = false,
+                Message = error ?? string.Empty
+            };
+            return _converter?.Serialize(outputMessage);
         }
 
         public virtual string ProcessMessage(string message)
@@ -35,21 +51,6 @@ namespace InfoService
             if (outputMessage == null)
                 return GetErrorMessage("Unknown command");
 
-            return _converter?.Serialize(outputMessage);
-        }
-
-        public void AddCommand(ServiceCommand command)
-        {
-            _commands.Add(command);
-        }
-
-        public string GetErrorMessage(string error)
-        {
-            var outputMessage = new OutputMessage
-            {
-                Result = false,
-                Message = error ?? string.Empty
-            };
             return _converter?.Serialize(outputMessage);
         }
     }

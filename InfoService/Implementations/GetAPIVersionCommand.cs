@@ -1,4 +1,8 @@
-﻿namespace InfoService
+﻿using InfoService.Helpers;
+using InfoService.Interfaces;
+using InfoService.Models;
+
+namespace InfoService.Implementations
 {
     public class GetAPIVersionCommand : ServiceCommand
     {

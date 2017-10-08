@@ -1,47 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.ServiceProcess;
+﻿using Autofac;
+using InfoService.Helpers;
+using InfoService.Implementations;
+using InfoService.Interfaces;
+using InfoService.Models;
+using System;
+using System.Net.Http;
 using System.Reflection;
+using System.ServiceProcess;
 
 namespace InfoService
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main(params string[] args)
+        private static void Main(params string[] args)
         {
             if (args.Length == 0)
             {
                 var log = new ServiceEventLog("Info Service");
                 try
                 {
-                    var jsonConverter = new JsonSerialyzer();
+                    // IoC container
+                    var builder = new ContainerBuilder();
 
-                    // update
-                    var updater = new WebUpdater();
+                    // Common
+                    builder.RegisterType<JsonSerialyzer>().As<ISerializer>();
+                    builder.RegisterInstance(log)
+                        .As<ILog>()
+                        .SingleInstance();
 
-                    // settings
-                    string dirName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    string settingsFileName = Path.Combine(dirName, "ServiceSettings.json");
-                    var settingsProvider = new FileSettingsProvider(settingsFileName, jsonConverter);
-                    ServiceSettings.GetInstance().SetSettingsProvider(settingsProvider);
+                    // Settings
+                    builder.RegisterType<FileSettingsProvider>().As<ISettingsProvider>();
+                    builder.RegisterType<ServiceSettings>().SingleInstance();
 
-                    // handlers
-                    var messageHandler = new MessageHandler(jsonConverter);
-                    var server = new WebServer(messageHandler);
+                    // Commands
+                    builder.RegisterType<GetAPIVersionCommand>();
 
-                    // commands
-                    messageHandler.AddCommand(new GetAPIVersionCommand(log));
-                    messageHandler.AddCommand(new UpdateCommand(log, updater));
-                    messageHandler.AddCommand(new GetInfoCommand(log, null, jsonConverter));
+                    builder.RegisterType<WebUpdater>().As<IUpdater>();
+                    builder.RegisterType<UpdateCommand>();
+
+                    builder.RegisterType<PCInfo>().As<IInstanceInfo>();
+                    builder.RegisterType<GetInfoCommand>();
+
+                    builder.Register(c =>
+                    {
+                        var handler = new MessageHandler(c.Resolve<ISerializer>());
+                        handler.AddCommand(c.Resolve<GetAPIVersionCommand>());
+                        handler.AddCommand(c.Resolve<UpdateCommand>());
+                        handler.AddCommand(c.Resolve<GetInfoCommand>());
+                        return handler;
+                    }).As<IMessageHandler>();
+
+                    // Server
+                    builder.RegisterType<HttpClient>();
+                    builder.RegisterType<WebServer>().As<IInfoServer>();
+
+                    IContainer container = builder.Build();
 
                     ServiceBase[] ServicesToRun;
                     ServicesToRun = new ServiceBase[]
                     {
-                        new InfoService(log, server)
+                        new InfoService(log, container.Resolve<IInfoServer>(), container.Resolve<ServiceSettings>())
                     };
                     ServiceBase.Run(ServicesToRun);
                 }

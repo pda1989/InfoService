@@ -1,44 +1,47 @@
-﻿using System.Collections.Generic;
+﻿using InfoService.Interfaces;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
-namespace InfoService
+namespace InfoService.Implementations
 {
     public class WebServer : IInfoServer
     {
+        protected HttpClient _client;
         protected IMessageHandler _messageHandler;
+        protected ServiceSettings _settings;
 
-
-        public WebServer(IMessageHandler messageHandler)
+        public WebServer(IMessageHandler messageHandler, ServiceSettings settings, HttpClient client)
         {
             _messageHandler = messageHandler;
+            _settings = settings;
+            _client = client;
         }
 
         public void PerformCommand()
         {
-            string message = RequestMessage();
+            //string message = RequestMessage();
+            var message = "{\"Command\":\"GetInfo\"}";
             string result = _messageHandler.ProcessMessage(message);
-            SendResult(result);
+            //SendResult(result);
         }
 
-        public string RequestMessage()
+        public virtual string RequestMessage()
         {
-            string uri = ServiceSettings.GetInstance().ServerName;
-            var client = new HttpClient();
-            var responseData = client.GetStringAsync(uri);
+            string uri = _settings?.ServerName;
+            var responseData = _client?.GetStringAsync(uri);
             return responseData.Result.Trim();
         }
 
-        public void SendResult(string result)
+        public virtual void SendResult(string result)
         {
-            string uri = ServiceSettings.GetInstance().ServerName;
-            var client = new HttpClient();
+            string uri = _settings?.ServerName;
             var values = new Dictionary<string, string>
             {
                 { "result", result }
             };
             var content = new FormUrlEncodedContent(values);
-            var response = client.PostAsync(uri, content);
+            var response = _client?.PostAsync(uri, content);
             var responseData = response.Result.Content.ReadAsStringAsync();
             string resultFromServer = responseData.Result.Trim();
             if (resultFromServer != "OK")

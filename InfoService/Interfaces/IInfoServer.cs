@@ -1,4 +1,4 @@
-﻿namespace InfoService
+﻿namespace InfoService.Interfaces
 {
     public interface IInfoServer
     {

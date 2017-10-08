@@ -1,6 +1,6 @@
-﻿namespace InfoService
+﻿namespace InfoService.Interfaces
 {
-    public enum LogType: byte
+    public enum LogType : byte
     {
         Information,
         Error
